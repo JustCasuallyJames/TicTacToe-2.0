@@ -1,5 +1,5 @@
 /**
- * GameLogic class is
+ * GameLogic class is where it calculates what defines a win in a tic tac toe game.
  */
 public class GameLogic {
     private int _winning_row_num;
@@ -63,6 +63,11 @@ public class GameLogic {
         return false; //since the player never won
     }
 
+    /**
+     * win_horizontal sees of the character piece given will yield a win by checking the entire board.
+     * @param piece - the character piece being passed in
+     * @return - true if the winning_row_num is reached, otherwise false
+     */
     private boolean win_horizontal(char piece){
         int cols = _board.get_cols(); //finds out how many cols there are
         int rows = _board.get_rows(); //finds out how many rows there are
@@ -84,6 +89,11 @@ public class GameLogic {
         return false;
     }
 
+    /**
+     * win_diagonal sees if the character piece wins diagonally
+     * @param piece - the character piece
+     * @return - true if the character piece wins diagonally.
+     */
     private boolean win_diagonal(char piece){
         return win_left_diagonal(piece) || win_right_diagonal(piece);
     }
@@ -105,9 +115,15 @@ public class GameLogic {
          4  . O . . X .
          5  . . O . . X
  */
+
+    /**
+     * left diagonal is defined as top left to bottom right diagonal.
+     * win_left_diagonal sees if the character piece will win diagonally from top left to bottom right.
+     * @param piece - the character piece
+     * @return - true if the character piece wins left diagonally.
+     */
     public boolean win_left_diagonal(char piece){
         int rows = _board.get_rows();
-        int cols = _board.get_cols();
         int counter = 0;
         int counter1 = 0;
         int increment = 2;
@@ -191,9 +207,15 @@ public class GameLogic {
      4  . . . . .
 
     */
+
+    /**
+     * right_diagonal is defined as top right to bottom left diagonal
+     * win_right_diagonal finds out if a character piece wins right diagonally.
+     * @param piece - the character piece that you're checking.
+     * @return - true if the character wins right diagonally.
+     */
     public boolean win_right_diagonal(char piece){
         int rows = _board.get_rows();
-        int cols = _board.get_cols();
         int counter = 0;
         int counter1 = 0;
         int increment = 2;
@@ -230,20 +252,9 @@ public class GameLogic {
             }
         }
 
+        //bottom half of the triangle.
         increment = 0;
         int k;
-        /*
-        1st: i = 0; i <= 5
-        2nd: i = 1; i <= 4
-        3rd: i = 2; i <= 3
-        4th: i = 3; i <= 2 <== doesn't run
-
-        1st: i = 0; i <= 6
-        2nd: i = 1; i <= 5
-        3rd: i = 2; i <= 4
-        4th: i = 3; i <= 3
-        5th: i = 4; i <= 2 <== doesn't run
-         */
         for (int i = 0; i <= rows-increment; i++, increment++){
             k = i;
             for(int j = rows - 1; j >= increment; j--, k++){

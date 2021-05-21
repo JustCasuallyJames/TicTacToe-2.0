@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Game class runs the entirety of the tic tac toe game
+ */
 public class Game {
     private Board _board;
     private GameLogic _gamelogic;
@@ -17,6 +20,10 @@ public class Game {
         this._gamelogic = gl;
         this._players = new ArrayList<Player>();
     }
+
+    /**
+     * play method runs the functionality of the entire tictactoe game.
+     */
     public void play(){
         System.out.println("Welcome to TicTacToe 2.0!");
         Scanner scan = new Scanner(System.in);
@@ -26,6 +33,10 @@ public class Game {
         playing_game(scan);
     }
 
+    /**
+     * player_prompt asks the user what their name is and character piece then is added to the arraylist of players
+     * @param scan - the scanner object that we're universally using.
+     */
     private void player_prompt(Scanner scan){
         int numPlayers = 0;
         boolean keepGoingPlayers = true;
@@ -86,6 +97,9 @@ public class Game {
         }
     }
 
+    /**
+     * create_board creates the board given the amount of players and prints the board
+     */
     private void create_board(){
         _board = new Board(_players.size()+1,_players.size()+1);
         System.out.printf("\nA board of size: %o", _players.size()+1);
@@ -93,6 +107,10 @@ public class Game {
         _board.print_board();
     }
 
+    /**
+     * in_a_row_prompt asks the user what defines a win in a tic tac toe game.
+     * @param scan - the scanner object that we're universally using.
+     */
     private void in_a_row_prompt(Scanner scan){
         boolean keepGoingInARow = true;
         do{
@@ -141,6 +159,11 @@ public class Game {
         }
     }
 
+    /**
+     * row_and_col_prompt asks the user what row and col they want to insert at.
+     * @param scan - the scanner object that we're universally using
+     * @return - the row and col inside an int array
+     */
     private int[] row_and_col_prompt(Scanner scan){
         int[] input = new int[2];
         int row,col;
@@ -181,11 +204,18 @@ public class Game {
         return input;
     }
 
+    /**
+     * congratulations congratulates the player for winning the game!
+     * @param p - the player who won
+     */
     public void congratulations(Player p){
         System.out.printf("Congratulations! %s", p.get_name());
         System.out.print(" has won!!\n");
     }
 
+    /**
+     * tie_game says that the game is done since there's a tie.
+     */
     public void tie_game(){
         System.out.println("This game is tied! No one wins!");
     }

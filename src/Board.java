@@ -92,6 +92,10 @@ public class Board {
         return this._board[row][col] == _EMPTY; //this means that if the board at that row and col is a period, it's empty.
     }
 
+    /**
+     * is_full_board checks whether the board is all filled up with anything but an empty cell
+     * @return false if the board isn't full
+     */
     public boolean is_full_board(){
         for (int i = 0; i < _rows; i++) {
             for (int j = 0; j < _cols; j++) {
@@ -103,6 +107,9 @@ public class Board {
         return true;
     }
 
+    /**
+     * print_board prints out the board with the given rows and columns
+     */
     public void print_board(){
         System.out.print("  ");
         for(int k = 0; k < _rows; k++){
